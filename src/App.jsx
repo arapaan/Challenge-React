@@ -23,14 +23,14 @@ function Modal() {
       <input
         type="email"
         placeholder="Enter your Email"
-        className="w-full p-3 border rounded-lg mb-3 text-sm"
+        className="w-full p-3 bg-white border rounded-lg mb-3 text-sm"
       />
 
       {/* Password */}
       <input
         type="password"
         placeholder="Enter Password"
-        className="w-full p-3 border rounded-lg mb-3 text-sm"
+        className="w-full p-3 bg-white border rounded-lg mb-3 text-sm"
       />
 
       {/* Forgot + Remember */}
@@ -50,7 +50,7 @@ function Modal() {
       </button>
 
       {/* Google login */}
-      <button className="w-full border py-3 rounded-lg mb-4 flex items-center justify-center space-x-2 hover:bg-gray-50 transition">
+      <button className="w-full border py-3 bg-white rounded-lg mb-4 flex items-center justify-center space-x-2 hover:bg-gray-50 transition">
         <img
           src="https://www.svgrepo.com/show/355037/google.svg"
           alt="google"
