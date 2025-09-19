@@ -2,35 +2,37 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Login() {
+function Register() {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("");    
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
+    const handleRegister = async () => {
         setError("");
 
             try {
-            const res = await axios.post("http://localhost:8000/api/login", {
+            const res = await axios.post("http://localhost:8000/api/register", {
+                name,
                 email,
                 password,
             });
 
             localStorage.setItem("token", res.data.token);
 
-            navigate("/dashboard");
+            navigate("/");
         } catch (error) {
-            setError(error.response?.data?.message || "Login gagal, coba Lagi!");
+            setError(error.response?.data?.message || "Register gagal, coba Lagi!");
         }
     };
 
     return (
     <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-400 min-h-screen flex items-center justify-center relative" >
         <div className="bg-white text-black rounded-xl shadow-lg p-8 w-[400px] text-center">
-        <h2 className="text-2xl font-bold mb-2">Welcome Back!</h2>
+        <h2 className="text-2xl font-bold mb-2">Welcome!</h2>
         <p className="text-gray-500 text-sm mb-6">
-            We missed you! Please enter your details.
+            Please enter your details.
         </p>
 
         {error && (
@@ -38,6 +40,15 @@ function Login() {
                 {error}
             </div>
         )}
+
+        {/* Name */}
+        <input
+            type="email"
+            placeholder="Enter your Name"
+            className="w-full p-3 bg-white border rounded-lg mb-3 text-sm"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+        />
 
         {/* Email */}
         <input
@@ -70,35 +81,24 @@ function Login() {
 
         {/* Sign in button */}
         <button
-            onClick={handleLogin}
+            onClick={handleRegister}
             className="w-full bg-blue-500 text-white py-3 rounded-lg mb-3 hover:bg-blue-600 transition"
         >
-            Sign in
+            Sign up
         </button>
 
-        {/* Google login */}
+        {/* Google Register */}
         <button className="w-full border py-3 bg-white rounded-lg mb-4 flex items-center justify-center space-x-2 hover:bg-gray-50 transition">
             <img
             src="https://www.svgrepo.com/show/355037/google.svg"
             alt="google"
             className="w-5 h-5"
             />
-            <span>Sign in with Google</span>
-        </button>
-
-        {/* Signup link */}
-        <p className="text-sm text-gray-600">
-            Don’t have an account?{" "}
-            <a 
-                onClick= {() => navigate("/register")}
-                className="text-blue-500 hover:underline"
-            >
-            Sign up
-            </a>
-        </p>
+            <span>Sign up with Google</span>
+        </button>        
         </div>
     </div>
     );
 }
 
-export default Login;
+export default Register;
